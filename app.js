@@ -8,16 +8,17 @@ var bodyParser = require('body-parser');
 // var index = require('./routes/index');
 // var users = require('./routes/users');
 
-var showallmember = require('./Controller/showallmember');   //表示連結至該js檔輸出的模塊,指派給物件showall
-var createmember =require('./Controller/createmember');
-var updatemember =require('./Controller/updatemember');
-var deletemember =require('./Controller/deletemember');
-
-
-var showproducts = require('./Controller/showproducts');
-var deleteitem = require('./Controller/deleteitem');
-var createitem = require('./Controller/createitem');
-var updateitem = require('./Controller/updateitem');
+// var showallmember = require('./Controller/showallmember');   //表示連結至該js檔輸出的模塊,指派給物件showall
+// var createmember =require('./Controller/createmember');
+// var updatemember =require('./Controller/updatemember');
+// var deletemember =require('./Controller/deletemember');
+//
+//
+// var showproducts = require('./Controller/showproducts');
+// var deleteitem = require('./Controller/deleteitem');
+// var createitem = require('./Controller/createitem');
+// var updateitem = require('./Controller/updateitem');
+var aaa = require('./memberManage/aaa');
 
 
 
@@ -42,17 +43,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', index);   //表示路徑,format:(路徑,連結該js檔物件名稱)
 // app.use('/users', users);
 
-app.use('/showallmember', showallmember);
-app.use('/uploads',express.static('uploads'));  //將uploads能讀取靜態檔案,/uploads為路徑
-app.use('/createmember',createmember);
-app.use('/updatemember',updatemember);
-app.use('/deletemember',deletemember);
-
-
-app.use('/showproducts', showproducts);
-app.use('/deleteitem', deleteitem);
-app.use('/createitem', createitem);
-app.use('/updateitem', updateitem);
+// app.use('/showallmember', showallmember);
+// app.use('/uploads',express.static('uploads'));  //將uploads能讀取靜態檔案,/uploads為路徑
+// app.use('/createmember',createmember);
+// app.use('/updatemember',updatemember);
+// app.use('/deletemember',deletemember);
+//
+//
+// app.use('/showproducts', showproducts);
+// app.use('/deleteitem', deleteitem);
+// app.use('/createitem', createitem);
+// app.use('/updateitem', updateitem);
+app.use('/aaa', aaa);
 
 
 
