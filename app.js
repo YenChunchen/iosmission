@@ -19,7 +19,7 @@ var bodyParser = require('body-parser');
 // var createitem = require('./Controller/createitem');
 // var updateitem = require('./Controller/updateitem');
 // var showallmember = require('./memberManage/showallmember');
-var index = require('./memberManage/index');
+var index = require('./ios_mission/index');
 
 
 
@@ -40,7 +40,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 // app.use('/', index);   //表示路徑,format:(路徑,連結該js檔物件名稱)
 // app.use('/users', users);
 
@@ -57,6 +56,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/updateitem', updateitem);
 // app.use('/showallmember', showallmember);
 app.use('/index', index);
+app.use('/uploads',express.static('uploads'));
+// ./uploads/sunny.jpg
+
 
 
 

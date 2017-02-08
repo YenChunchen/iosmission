@@ -1,6 +1,7 @@
 var express=require('express');
 var router=express.Router();
 var url=require('url');
+var fs=require('fs');
 router.get('/',function(req,res){
   // { host: '127.0.0.1:3000',
   // connection: 'keep-alive',
@@ -15,21 +16,22 @@ router.get('/',function(req,res){
   // console.log(headerinfoL);
   // console.log(headerinfoM);
   var getquery = url.parse(req.url, true).query;
+  var headerinfo=req.headers.name;  //顯示header中父項目內容
+  console.log(headerinfo);
   var name=getquery.name;
-  var message='welcome 11111'+name;
+  var message='welcome '+name;
   var today=new Date();
   var time={
-    year:today.getFullYear(),
-    month:today.getMonth(),
-    day:today.getDay(),
+    year:today.getFullYear().toString(),
+    month:today.getMonth().toString(),
+    day:today.getDay().toString(),
     hour:parseInt(today.getHours()),
     min:parseFloat(today.getMinutes())
   };
-  var text='111';
-  console.log(text);
-  var weather='/home/ray/mynode/123/index/sunny.jpg';
-  res.render('welcome',{welcome:message,time:time,weather:weather});
-  // res.json({welcome:message,time:time,weather:weather});
+console.log(typeof time.year);
+  var weather='http://'+req.hostname+'/uploads/sunny.jpg';
+  // res.render('welcome',{welcome:message,time:time,weather:weather});
+  res.json({welcome:message,time:time,weather:weather});
 });
 
 module.exports=router;
