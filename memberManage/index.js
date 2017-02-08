@@ -22,7 +22,7 @@ router.get('/',function(req,res){
     year:today.getFullYear(),
     month:today.getMonth(),
     day:today.getDay(),
-    hour:today.getHours(),
+    hour:parseInt(today.getHours()),
     min:parseFloat(today.getMinutes())
   };
   res.json({welcome:message,time:time});
