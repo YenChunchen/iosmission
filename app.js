@@ -18,7 +18,7 @@ var bodyParser = require('body-parser');
 // var deleteitem = require('./Controller/deleteitem');
 // var createitem = require('./Controller/createitem');
 // var updateitem = require('./Controller/updateitem');
-var aaa = require('./memberManage/aaa');
+var showallmember = require('./memberManage/showallmember');
 
 
 
@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/deleteitem', deleteitem);
 // app.use('/createitem', createitem);
 // app.use('/updateitem', updateitem);
-app.use('/aaa', aaa);
+app.use('/showallmember', showallmember);
 
 
 
