@@ -22,7 +22,7 @@ router.get('/',function(req,res){
   var today=new Date();
   var weather;
   var time={
-    year:today.getFullYear().toString()+'年',
+    year:today.getFullYear().toString(),
     month:today.getMonth().toString(),
     day:today.getDay().toString(),
     hour:parseInt(today.getHours()),
