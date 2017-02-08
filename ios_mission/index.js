@@ -16,21 +16,22 @@ router.get('/',function(req,res){
   // console.log(headerinfoL);
   // console.log(headerinfoM);
   var getquery = url.parse(req.url, true).query;
-  var headerinfo=req.headers.name;  //顯示header中父項目內容
-  console.log(headerinfo);
+  var weatherinput=req.headers.weatherinput;  //顯示header中父項目內容
   var name=getquery.name;
   var message='welcome '+name;
   var today=new Date();
+  var weather;
   var time={
-    year:today.getFullYear().toString(),
+    year:today.getFullYear().toString()+'年',
     month:today.getMonth().toString(),
     day:today.getDay().toString(),
     hour:parseInt(today.getHours()),
     min:parseFloat(today.getMinutes())
   };
-console.log(typeof time.year);
-  var weather='http://'+req.hostname+'/uploads/sunny.jpg';
-  // res.render('welcome',{welcome:message,time:time,weather:weather});
+  if(weatherinput==='sunny')
+    weather='http://'+req.hostname+'/uploads/sunny.jpg';
+  if(weatherinput==='rainy')
+    weather='http://'+req.hostname+'/uploads/rainy.jpg';
   res.json({welcome:message,time:time,weather:weather});
 });
 
