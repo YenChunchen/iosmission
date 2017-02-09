@@ -46,7 +46,7 @@ router.post('/',function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  if (name===undefined) res.json({fail:'請輸入name'});
+ // if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
   var today=new Date();
   var time={
