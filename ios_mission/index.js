@@ -23,10 +23,7 @@ router.get('/m2',function(req,res){
   var name=req.headers.name;
   if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
-<<<<<<< HEAD
   chooseweather(weatherinput,req,res);
-=======
->>>>>>> ddf7e75d0b8980fab85962d57f9a09cffef5fc71
   var today=new Date();
   var weather;
   var time={
@@ -68,10 +65,7 @@ router.post('/m3',function(req,res){
   console.log(typeof name);
   if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
-<<<<<<< HEAD
   chooseweather(weatherinput,req,res);
-=======
->>>>>>> ddf7e75d0b8980fab85962d57f9a09cffef5fc71
   var today=new Date();
   var time={
     year:today.getFullYear().toString(),
@@ -124,10 +118,7 @@ router.post('/m4',upload.single(),function(req,res){
   };
   switch (weatherinput){
     case 'sunny':{
-<<<<<<< HEAD
       weather='https://'+req.hostname+'/uploads/sunny.jpg';
-=======
->>>>>>> ddf7e75d0b8980fab85962d57f9a09cffef5fc71
       weather='https://'+req.hostname+'/uploads/'+temp.weatherinput+'.jpg';
       break;
     }
@@ -144,10 +135,7 @@ router.post('/m4',upload.single(),function(req,res){
       break;
     }
     default:{
-<<<<<<< HEAD
       res.json({fail:'請輸入正確天氣'});
-=======
->>>>>>> ddf7e75d0b8980fab85962d57f9a09cffef5fc71
       weather='https://'+req.hostname+'/uploads/nothing.jpg';
       break;
     }
