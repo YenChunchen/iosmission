@@ -22,9 +22,7 @@ router.get('/m2',function(req,res){
   var name=req.headers.name;
   checkfield(name,weatherinput,res);
   var message='welcome '+name;
-<<<<<<< HEAD
   chooseweather(weatherinput,req,res);
-=======
   var today=new Date();
   var weather;
   var time={
@@ -56,7 +54,6 @@ router.get('/m2',function(req,res){
       break;
     }
   }
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
   res.json({welcome:message,time:time,weather:weather});
 });
 //-----------------------------------------------------------------------
@@ -66,9 +63,7 @@ router.post('/m3',function(req,res){
   var weatherinput=temp.weatherinput;
   checkfield(name,weatherinput,res);
   var message='welcome '+name;
-<<<<<<< HEAD
   chooseweather(weatherinput,req,res);
-=======
   var today=new Date();
   var time={
     year:today.getFullYear().toString(),
@@ -99,7 +94,6 @@ router.post('/m3',function(req,res){
       break;
     }
   }
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
   res.json({welcome:message,time:time,weather:weather});
 });
 //-----------------------------------------------------------------------------
@@ -123,11 +117,8 @@ module.exports=router;
 function chooseweather(weatherinput,req,res){
   switch (weatherinput){
     case 'sunny':{
-<<<<<<< HEAD
       weather='https://'+req.hostname+'/uploads/sunny.jpg';
-=======
       weather='https://'+req.hostname+'/uploads/'+temp.weatherinput+'.jpg';
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
       break;
     }
     case 'rainy':{
@@ -143,11 +134,8 @@ function chooseweather(weatherinput,req,res){
       break;
     }
     default:{
-<<<<<<< HEAD
       res.json({fail:'請輸入正確天氣'});
-=======
       weather='https://'+req.hostname+'/uploads/nothing.jpg';
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
       break;
     }
   }
