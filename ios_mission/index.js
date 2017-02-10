@@ -18,9 +18,9 @@ router.get('/m1',function(req,res){
 });
 //-----------------------------------------------------------------------
 router.get('/m2',function(req,res){
-  var getquery = url.parse(req.url, true).query;
+  // var getquery = url.parse(req.url, true).query;
   var weatherinput=req.headers.weatherinput;  //顯示header中父項目內容
-  var name=getquery.name;
+  var name=req.headers.name;
   if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
   var today=new Date();
