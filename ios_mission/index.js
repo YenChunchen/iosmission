@@ -12,7 +12,7 @@ router.get('/m1',function(req,res){
     month:today.getMonth().toString(),
     day:today.getDay().toString(),
     hour:parseInt(today.getHours()),
-    min:parseFloat(today.getMinutes())+0.5
+    min:parseFloat(today.getMinutes())
   };
   res.json({welcome:message,time:time});
 });
@@ -30,7 +30,7 @@ router.get('/m2',function(req,res){
     month:today.getMonth().toString(),
     day:today.getDay().toString(),
     hour:parseInt(today.getHours()),
-    min:parseFloat(today.getMinutes())+0.5
+    min:parseFloat(today.getMinutes())
   };
   switch (weatherinput){
     case 'sunny':{
@@ -70,7 +70,7 @@ router.post('/m3',function(req,res){
     month:today.getMonth().toString(),
     day:today.getDay().toString(),
     hour:parseInt(today.getHours()),
-    min:parseFloat(today.getMinutes())+0.5
+    min:parseFloat(today.getMinutes())
   };
   switch (weatherinput){
     case 'sunny':{
@@ -112,7 +112,7 @@ router.post('/m4',upload.single(),function(req,res){
     month:today.getMonth().toString(),
     day:today.getDay().toString(),
     hour:parseInt(today.getHours()),
-    min:parseFloat(today.getMinutes())+0.5
+    min:parseFloat(today.getMinutes())
   };
   switch (weatherinput){
     case 'sunny':{
