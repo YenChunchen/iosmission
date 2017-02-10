@@ -12,7 +12,7 @@ var time={
 var weather;
 router.get('/m1',function(req,res){
   var name=req.query.name;
-  if ((name===undefined)||(name==='')) res.json({fail:'請輸入name'});
+  if ((name===undefined)||(name==='')) res.status(500).json({fail:'請輸入name' });
   var message='welcome '+name;
   res.json({welcome:message,time:time});
 });
@@ -80,6 +80,6 @@ function chooseweather(weatherinput,req,res){
 }
 
 function checkfield(name,weatherinput,res){
-  if ((name===undefined)||(name==='')) res.json({fail:'請輸入name'});
-  if ((weatherinput===undefined)||(weatherinput==='')) res.json({fail:'請輸入正確天氣'});
+  if ((name===undefined)||(name==='')) res.status(500).json({fail:'請輸入name' });
+  if ((weatherinput===undefined)||(weatherinput==='')) res.status(500).json({fail:'請輸入正確天氣' });
 }
