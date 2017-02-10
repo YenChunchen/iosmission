@@ -1,30 +1,28 @@
 var express=require('express');
 var router=express.Router();
 var url=require('url');
-var today=new Date();
-var time={
-  year:today.getFullYear().toString(),
-  month:today.getMonth().toString(),
-  day:today.getDay().toString(),
-  hour:parseInt(today.getHours()),
-  min:parseFloat(today.getMinutes())
-};
-var weather;
 router.get('/m1',function(req,res){
-  var name=req.query.name;
-  if ((name===undefined)||(name==='')) res.json({fail:'請輸入name'});
+  var getquery = url.parse(req.url, true).query;
+  var name=getquery.name;
+  if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
+  var today=new Date();
+  var time={
+    year:today.getFullYear().toString(),
+    month:today.getMonth().toString(),
+    day:today.getDay().toString(),
+    hour:parseInt(today.getHours()),
+    min:parseFloat(today.getMinutes())+0.5
+  };
   res.json({welcome:message,time:time});
 });
 //-----------------------------------------------------------------------
 router.get('/m2',function(req,res){
-  var weatherinput=req.headers.weatherinput;
+  // var getquery = url.parse(req.url, true).query;
+  var weatherinput=req.headers.weatherinput;  //顯示header中父項目內容
   var name=req.headers.name;
-  checkfield(name,weatherinput,res);
+  if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
-<<<<<<< HEAD
-  chooseweather(weatherinput,req,res);
-=======
   var today=new Date();
   var weather;
   var time={
@@ -56,7 +54,6 @@ router.get('/m2',function(req,res){
       break;
     }
   }
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
   res.json({welcome:message,time:time,weather:weather});
 });
 //-----------------------------------------------------------------------
@@ -64,11 +61,9 @@ router.post('/m3',function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  checkfield(name,weatherinput,res);
+  console.log(typeof name);
+  if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
-<<<<<<< HEAD
-  chooseweather(weatherinput,req,res);
-=======
   var today=new Date();
   var time={
     year:today.getFullYear().toString(),
@@ -99,7 +94,6 @@ router.post('/m3',function(req,res){
       break;
     }
   }
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
   res.json({welcome:message,time:time,weather:weather});
 });
 //-----------------------------------------------------------------------------
@@ -107,27 +101,22 @@ var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 router.post('/m4',upload.single(),function(req,res){
   var temp=req.body;
+  console.log(temp);
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  checkfield(name,weatherinput,res);
+  if (name===undefined) res.json({fail:'請輸入name'});
   var message='welcome '+name;
-  chooseweather(weatherinput,req,res);
-  res.json({welcome:message,time:time,weather:weather});
-});
-module.exports=router;
-
-
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-function chooseweather(weatherinput,req,res){
+  var today=new Date();
+  var time={
+    year:today.getFullYear().toString(),
+    month:today.getMonth().toString(),
+    day:today.getDay().toString(),
+    hour:parseInt(today.getHours()),
+    min:parseFloat(today.getMinutes())+0.5
+  };
   switch (weatherinput){
     case 'sunny':{
-<<<<<<< HEAD
-      weather='https://'+req.hostname+'/uploads/sunny.jpg';
-=======
       weather='https://'+req.hostname+'/uploads/'+temp.weatherinput+'.jpg';
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
       break;
     }
     case 'rainy':{
@@ -143,17 +132,10 @@ function chooseweather(weatherinput,req,res){
       break;
     }
     default:{
-<<<<<<< HEAD
-      res.json({fail:'請輸入正確天氣'});
-=======
       weather='https://'+req.hostname+'/uploads/nothing.jpg';
->>>>>>> 3cfee38ef72deb249750e701b7aec1960994be0d
       break;
     }
   }
-}
-
-function checkfield(name,weatherinput,res){
-  if ((name===undefined)||(name==='')) res.json({fail:'請輸入name'});
-  if ((weatherinput===undefined)||(weatherinput==='')) res.json({fail:'請輸入正確天氣'});
-}
+  res.json({welcome:message,time:time,weather:weather});
+});
+module.exports=router;
