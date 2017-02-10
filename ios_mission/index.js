@@ -34,23 +34,23 @@ router.get('/m2',function(req,res){
   };
   switch (weatherinput){
     case 'sunny':{
-      weather='http://'+req.hostname+'/uploads/sunny.jpg';
+      weather='https://'+req.hostname+'/uploads/sunny.jpg';
       break;
     }
     case 'rainy':{
-      weather='http://'+req.hostname+'/uploads/rainy.jpg';
+      weather='https://'+req.hostname+'/uploads/rainy.jpg';
       break;
     }
     case 'snow':{
-      weather='http://'+req.hostname+'/uploads/snow.jpg';
+      weather='https://'+req.hostname+'/uploads/snow.jpg';
       break;
     }
     case 'fog':{
-      weather='http://'+req.hostname+'/uploads/fog.jpg';
+      weather='https://'+req.hostname+'/uploads/fog.jpg';
       break;
     }
     default:{
-      weather='http://'+req.hostname+'/uploads/nothing.jpg';
+      weather='https://'+req.hostname+'/uploads/nothing.jpg';
       break;
     }
   }
@@ -74,23 +74,23 @@ router.post('/m3',function(req,res){
   };
   switch (weatherinput){
     case 'sunny':{
-      weather='http://'+req.hostname+'/uploads/'+temp.weatherinput+'.jpg';
+      weather='https://'+req.hostname+'/uploads/'+temp.weatherinput+'.jpg';
       break;
     }
     case 'rainy':{
-      weather='http://'+req.hostname+'/uploads/rainy.jpg';
+      weather='https://'+req.hostname+'/uploads/rainy.jpg';
       break;
     }
     case 'snow':{
-      weather='http://'+req.hostname+'/uploads/snow.jpg';
+      weather='https://'+req.hostname+'/uploads/snow.jpg';
       break;
     }
     case 'fog':{
-      weather='http://'+req.hostname+'/uploads/fog.jpg';
+      weather='https://'+req.hostname+'/uploads/fog.jpg';
       break;
     }
     default:{
-      weather='http://'+req.hostname+'/uploads/nothing.jpg';
+      weather='https://'+req.hostname+'/uploads/nothing.jpg';
       break;
     }
   }
@@ -116,23 +116,23 @@ router.post('/m4',upload.single(),function(req,res){
   };
   switch (weatherinput){
     case 'sunny':{
-      weather='http://'+req.hostname+'/uploads/'+temp.weatherinput+'.jpg';
+      weather='https://'+req.hostname+'/uploads/'+temp.weatherinput+'.jpg';
       break;
     }
     case 'rainy':{
-      weather='http://'+req.hostname+'/uploads/rainy.jpg';
+      weather='https://'+req.hostname+'/uploads/rainy.jpg';
       break;
     }
     case 'snow':{
-      weather='http://'+req.hostname+'/uploads/snow.jpg';
+      weather='https://'+req.hostname+'/uploads/snow.jpg';
       break;
     }
     case 'fog':{
-      weather='http://'+req.hostname+'/uploads/fog.jpg';
+      weather='https://'+req.hostname+'/uploads/fog.jpg';
       break;
     }
     default:{
-      weather='http://'+req.hostname+'/uploads/nothing.jpg';
+      weather='https://'+req.hostname+'/uploads/nothing.jpg';
       break;
     }
   }
