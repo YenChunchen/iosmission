@@ -89,6 +89,15 @@ function ChooseWeather(weatherinput,req,res){
 }
 /*檢查m2,m3,m4使用者輸入欄位是否正確   */
 function CheckField(name,weatherinput,res){
-  if ((name===undefined)||(name==='')) res.status(400).json({fail:'請輸入name' });
-  if ((weatherinput===undefined)||(weatherinput==='')) res.status(400).json({fail:'請輸入正確天氣' });
+  var fail;
+  if ((name===undefined)||(name==='')) 
+  {
+    fail={fail:'請輸入name'};
+    res.status(400).json({fail:fail });
+  }
+  if ((weatherinput===undefined)||(weatherinput==='')) 
+  {
+    fail={fail:'請輸入正確天氣'};
+    res.status(400).json({fail:fail });
+  }
 }
