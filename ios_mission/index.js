@@ -37,7 +37,13 @@ router.post('/m3',function(req,res){
   CheckField(name,weatherinput,res);
   var message='welcome '+name;
   ChooseWeather(weatherinput,req,res);
-  res.json({welcome:message,time:time,weather:weather});
+  var success={
+      welcome:message,
+      time:time,
+      weather:weather
+  };
+  //res.json({welcome:message,time:time,weather:weather});
+  res.json({success:success});
 });
 
 /*   mission4   */
