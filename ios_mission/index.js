@@ -21,7 +21,11 @@ router.get('/m1',function(req,res){
     res.status(400).json({fail:fail });
   }
   var message='welcome '+name;
-  res.json({welcome:message,time:time});
+  var success={
+      welcome:message,
+      time:time,
+  };
+  res.json({success:success});
 });
 
 /*   mission2   */
@@ -31,7 +35,13 @@ router.get('/m2',function(req,res){
   CheckField(name,weatherinput,res);
   var message='welcome '+name;
   ChooseWeather(weatherinput,req,res);
-  res.json({welcome:message,time:time,weather:weather});
+  var success={
+      welcome:message,
+      time:time,
+      weather:weather
+  };
+  res.json({success:success})
+  //res.json({welcome:message,time:time,weather:weather});
 });
 
 /*   mission3   */
@@ -61,7 +71,13 @@ router.post('/m4',upload.single(),function(req,res){
   CheckField(name,weatherinput,res);
   var message='welcome '+name;
   ChooseWeather(weatherinput,req,res);
-  res.json({welcome:message,time:time,weather:weather});
+  var success={
+      welcome:message,
+      time:time,
+      weather:weather
+  };
+  res.json({success:success});
+  //res.json({welcome:message,time:time,weather:weather});
 });
 module.exports=router;
 
