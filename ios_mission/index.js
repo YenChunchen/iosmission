@@ -23,8 +23,9 @@ router.get('/m1',function(req,res){
   var message='welcome '+name;
   var success={
       welcome:message,
-      time:time,
+      time:time
   };
+  //res.json({welcome:message,time:time});
   res.json({success:success});
 });
 
@@ -40,8 +41,8 @@ router.get('/m2',function(req,res){
       time:time,
       weather:weather
   };
-  res.json({success:success})
   //res.json({welcome:message,time:time,weather:weather});
+  res.json({success:success});
 });
 
 /*   mission3   */
@@ -76,8 +77,8 @@ router.post('/m4',upload.single(),function(req,res){
       time:time,
       weather:weather
   };
-  res.json({success:success});
   //res.json({welcome:message,time:time,weather:weather});
+  res.json({success:success});
 });
 module.exports=router;
 
