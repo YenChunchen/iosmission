@@ -14,7 +14,12 @@ var weather;
 /*   mission1   */
 router.get('/m1',function(req,res){
   var name=req.query.name;
-  if ((name===undefined)||(name==='')) res.status(400).json({fail:'請輸入name' });
+  var fail;
+  if ((name===undefined)||(name==='')) 
+  {
+    fail={fail:'請輸入name'};
+    res.status(400).json({fail:fail });
+  }
   var message='welcome '+name;
   res.json({welcome:message,time:time});
 });
