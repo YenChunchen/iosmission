@@ -39,7 +39,7 @@ router.get('/m2',function(req,res){
   var success={
       welcome:message,
       time:time,
-      weather:weather
+      weather_image:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -56,7 +56,7 @@ router.post('/m3',function(req,res){
   var success={
       welcome:message,
       time:time,
-      weather:weather
+      weather_image:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -75,7 +75,7 @@ router.post('/m4',upload.single(),function(req,res){
   var success={
       welcome:message,
       time:time,
-      weather:weather
+      weather_image:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
