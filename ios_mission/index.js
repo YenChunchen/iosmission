@@ -6,8 +6,8 @@ var time={
   year:today.getFullYear().toString(),
   month:(today.getMonth()+1).toString(),  //getMonth()預設從0開始故+1
   day:today.getDate().toString(),
-  hour:parseInt(today.getHours()),
-  min:parseFloat(today.getMinutes())
+  hour:12,
+  min:5.5
 };
 var weather;
 
