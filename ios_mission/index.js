@@ -3,11 +3,11 @@ var router=express.Router();
 var url=require('url');
 var today=new Date();
 var time={
-  year:"2017",
-  month:"2",
-  day:"28",
-  hour:parseInt("12"),
-  min:parseFloat("15.5")
+  year:today.getFullYear().toString(),
+  month:(today.getMonth()+1).toString(),  //getMonth()預設從0開始故+1
+  day:today.getDate().toString(),
+  hour:parseInt(today.getHours()),
+  min:parseFloat(today.getMinutes())
 };
 var weather;
 
