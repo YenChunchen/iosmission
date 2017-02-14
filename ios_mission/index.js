@@ -33,13 +33,13 @@ router.get('/m1',function(req,res){
 router.get('/m2',function(req,res){
   var weatherinput=req.headers.weatherinput;
   var name=req.headers.name;
-  CheckField(name,weatherinput,res);
+  checkField(name,weatherinput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  chooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weather_image:weather
+      weatherImage:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -50,13 +50,13 @@ router.post('/m3',function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  CheckField(name,weatherinput,res);
+  checkField(name,weatherinput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  chooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weather_image:weather
+      weatherImage:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -69,13 +69,13 @@ router.post('/m4',upload.single(),function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  CheckField(name,weatherinput,res);
+  checkField(name,weatherinput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  chooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weather_image:weather
+      weatherImage:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -84,7 +84,7 @@ module.exports=router;
 
 
 /*依使用者輸入天氣名稱選擇不同圖片回應*/
-function ChooseWeather(weatherinput,req,res){
+function chooseWeather(weatherinput,req,res){
   switch (weatherinput){
     case 'sunny':{
       weather='https://'+req.hostname+'/uploads/sunny.jpg';
@@ -110,7 +110,7 @@ function ChooseWeather(weatherinput,req,res){
   }
 }
 /*檢查m2,m3,m4使用者輸入欄位是否正確   */
-function CheckField(name,weatherinput,res){
+function checkField(name,weatherinput,res){
   var fail;
   if ((name===undefined)||(name==='')) 
   {
