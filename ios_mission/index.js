@@ -31,7 +31,7 @@ router.get('/m1',function(req,res){
 
 /*   mission2   */
 router.get('/m2',function(req,res){
-  var weatherInput=req.headers.weather_input;
+  var weatherInput=req.headers.weatherinput;
   var name=req.headers.name;
   CheckField(name,weatherInput,res);
   var message='welcome '+name;
