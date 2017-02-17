@@ -10,12 +10,11 @@ var time={
   min:5.5
 };
 var weather;
-
 /*   mission1   */
 router.get('/m1',function(req,res){
   var name=req.query.name;
   var fail;
-  if ((name===undefined)||(name===''))
+  if ((name===undefined)||(name==='')) 
   {
     fail={fail:'請輸入name'};
     res.status(400).json({fail:fail });
@@ -28,40 +27,37 @@ router.get('/m1',function(req,res){
   //res.json({welcome:message,time:time});
   res.json({success:success});
 });
-
 /*   mission2   */
 router.get('/m2',function(req,res){
   var weatherinput=req.headers.weatherinput;
   var name=req.headers.name;
-  CheckField(name,weatherinput,res);
+  checkField(name,weatherinput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  chooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weather:weather
+      weatherImage:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
 });
-
 /*   mission3   */
 router.post('/m3',function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  CheckField(name,weatherinput,res);
+  checkField(name,weatherinput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  chooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weather:weather
+      weatherImage:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
 });
-
 /*   mission4   */
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
@@ -69,22 +65,20 @@ router.post('/m4',upload.single(),function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  CheckField(name,weatherinput,res);
+  checkField(name,weatherinput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  chooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weather:weather
+      weatherImage:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
 });
 module.exports=router;
-
-
 /*依使用者輸入天氣名稱選擇不同圖片回應*/
-function ChooseWeather(weatherinput,req,res){
+function chooseWeather(weatherinput,req,res){
   switch (weatherinput){
     case 'sunny':{
       weather='https://'+req.hostname+'/uploads/sunny.jpg';
