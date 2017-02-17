@@ -31,7 +31,7 @@ router.get('/m1',function(req,res){
 
 /*   mission2   */
 router.get('/m2',function(req,res){
-  var weatherinput=req.headers.weatherinput;
+  var weatherinput=req.headers.weatherInput;
   var name=req.headers.name;
   CheckField(name,weatherinput,res);
   var message='welcome '+name;
@@ -49,7 +49,7 @@ router.get('/m2',function(req,res){
 router.post('/m3',function(req,res){
   var temp=req.body;
   var name=temp.name;
-  var weatherinput=temp.weatherinput;
+  var weatherinput=temp.weatherInput;
   CheckField(name,weatherinput,res);
   var message='welcome '+name;
   ChooseWeather(weatherinput,req,res);
@@ -68,7 +68,7 @@ var upload = multer({ dest: 'uploads/' });
 router.post('/m4',upload.single(),function(req,res){
   var temp=req.body;
   var name=temp.name;
-  var weatherinput=temp.weatherinput;
+  var weatherinput=temp.weatherInput;
   CheckField(name,weatherinput,res);
   var message='welcome '+name;
   ChooseWeather(weatherinput,req,res);
