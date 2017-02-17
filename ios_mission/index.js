@@ -31,11 +31,11 @@ router.get('/m1',function(req,res){
 
 /*   mission2   */
 router.get('/m2',function(req,res){
-  var weatherinput=req.headers.weatherInput;
+  var weatherInput=req.headers.weatherInput;
   var name=req.headers.name;
-  CheckField(name,weatherinput,res);
+  CheckField(name,weatherInput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  ChooseWeather(weatherInput,req,res);
   var success={
       welcome:message,
       time:time,
@@ -49,10 +49,10 @@ router.get('/m2',function(req,res){
 router.post('/m3',function(req,res){
   var temp=req.body;
   var name=temp.name;
-  var weatherinput=temp.weatherInput;
-  CheckField(name,weatherinput,res);
+  var weatherInput=temp.weatherInput;
+  CheckField(name,weatherInput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  ChooseWeather(weatherInput,req,res);
   var success={
       welcome:message,
       time:time,
@@ -68,10 +68,10 @@ var upload = multer({ dest: 'uploads/' });
 router.post('/m4',upload.single(),function(req,res){
   var temp=req.body;
   var name=temp.name;
-  var weatherinput=temp.weatherInput;
-  CheckField(name,weatherinput,res);
+  var weatherInput=temp.weatherInput;
+  CheckField(name,weatherInput,res);
   var message='welcome '+name;
-  ChooseWeather(weatherinput,req,res);
+  ChooseWeather(weatherInput,req,res);
   var success={
       welcome:message,
       time:time,
@@ -84,8 +84,8 @@ module.exports=router;
 
 
 /*依使用者輸入天氣名稱選擇不同圖片回應*/
-function ChooseWeather(weatherinput,req,res){
-  switch (weatherinput){
+function ChooseWeather(weatherInput,req,res){
+  switch (weatherInput){
     case 'sunny':{
       weather='https://'+req.hostname+'/uploads/sunny.jpg';
       break;
@@ -109,12 +109,12 @@ function ChooseWeather(weatherinput,req,res){
   }
 }
 /*檢查m2,m3,m4使用者輸入欄位是否正確   */
-function CheckField(name,weatherinput,res){
+function CheckField(name,weatherInput,res){
   var fail,checkBoth=0;
   if ((name===undefined)||(name==='')){
     checkBoth++;
   }
-  if((weatherinput===undefined)||(weatherinput==='')){
+  if((weatherInput===undefined)||(weatherInput==='')){
     checkBoth++;
   }
   if(checkBoth===2){
@@ -126,7 +126,7 @@ function CheckField(name,weatherinput,res){
     fail={fail:'請輸入name'};
     res.status(400).json({fail:fail });
   }
-  if((weatherinput===undefined)||(weatherinput==='')){
+  if((weatherInput===undefined)||(weatherInput==='')){
       checkBoth++;
       fail={fail:'請輸入正確天氣'};
       res.status(400).json({fail:fail });
