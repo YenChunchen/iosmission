@@ -110,16 +110,26 @@ function chooseWeather(weatherinput,req,res){
   }
 }
 /*檢查m2,m3,m4使用者輸入欄位是否正確   */
-function checkField(name,weatherinput,res){
-  var fail;
-  if ((name===undefined)||(name==='')) 
-  {
+function CheckField(name,weatherinput,res){
+  var fail,checkBoth=0;
+  if ((name===undefined)||(name==='')){
+    checkBoth++;
+  }
+  if((weatherinput===undefined)||(weatherinput==='')){
+    checkBoth++;
+  }
+  if(checkBoth===2){
+    fail={fail:'請輸入正確天氣及name'};
+    res.status(400).json({fail:fail });
+  }
+  if ((name===undefined)||(name==='')){
+    checkBoth++;
     fail={fail:'請輸入name'};
     res.status(400).json({fail:fail });
   }
-  if ((weatherinput===undefined)||(weatherinput==='')) 
-  {
-    fail={fail:'請輸入正確天氣'};
-    res.status(400).json({fail:fail });
+  else if((weatherinput===undefined)||(weatherinput==='')){
+      checkBoth++;
+      fail={fail:'請輸入正確天氣'};
+      res.status(400).json({fail:fail });
   }
 }
