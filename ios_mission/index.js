@@ -15,7 +15,7 @@ var weather;
 router.get('/m1',function(req,res){
   var name=req.query.name;
   var fail;
-  if ((name===undefined)||(name==='')) 
+  if ((name===undefined)||(name===''))
   {
     fail={fail:'請輸入name'};
     res.status(400).json({fail:fail });
@@ -33,13 +33,13 @@ router.get('/m1',function(req,res){
 router.get('/m2',function(req,res){
   var weatherinput=req.headers.weatherinput;
   var name=req.headers.name;
-  checkField(name,weatherinput,res);
+  CheckField(name,weatherinput,res);
   var message='welcome '+name;
-  chooseWeather(weatherinput,req,res);
+  ChooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weatherImage:weather
+      weather:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -50,13 +50,13 @@ router.post('/m3',function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  checkField(name,weatherinput,res);
+  CheckField(name,weatherinput,res);
   var message='welcome '+name;
-  chooseWeather(weatherinput,req,res);
+  ChooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weatherImage:weather
+      weather:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -69,13 +69,13 @@ router.post('/m4',upload.single(),function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherinput=temp.weatherinput;
-  checkField(name,weatherinput,res);
+  CheckField(name,weatherinput,res);
   var message='welcome '+name;
-  chooseWeather(weatherinput,req,res);
+  ChooseWeather(weatherinput,req,res);
   var success={
       welcome:message,
       time:time,
-      weatherImage:weather
+      weather:weather
   };
   //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
@@ -84,7 +84,7 @@ module.exports=router;
 
 
 /*依使用者輸入天氣名稱選擇不同圖片回應*/
-function chooseWeather(weatherinput,req,res){
+function ChooseWeather(weatherinput,req,res){
   switch (weatherinput){
     case 'sunny':{
       weather='https://'+req.hostname+'/uploads/sunny.jpg';
@@ -104,7 +104,6 @@ function chooseWeather(weatherinput,req,res){
     }
     default:{
       res.json({fail:'請輸入正確天氣'});
-      weather='https://'+req.hostname+'/uploads/nothing.jpg';
       break;
     }
   }
@@ -127,7 +126,7 @@ function CheckField(name,weatherinput,res){
     fail={fail:'請輸入name'};
     res.status(400).json({fail:fail });
   }
-  else if((weatherinput===undefined)||(weatherinput==='')){
+  if((weatherinput===undefined)||(weatherinput==='')){
       checkBoth++;
       fail={fail:'請輸入正確天氣'};
       res.status(400).json({fail:fail });
