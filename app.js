@@ -20,7 +20,8 @@ var bodyParser = require('body-parser');
 // var updateitem = require('./Controller/updateitem');
 // var showallmember = require('./memberManage/showallmember');
 var index = require('./ios_mission/index');
-
+var mission5 = require('./ios_mission/mission5');
+var mission6 = require('./ios_mission/mission6');
 
 
 
@@ -57,6 +58,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/updateitem', updateitem);
 // app.use('/showallmember', showallmember);
 app.use('/index', index);
+app.use('/mission5', mission5);
+app.use('/mission6', mission6);
+
 app.use('/uploads',express.static('uploads'));
 // ./uploads/sunny.jpg
 
