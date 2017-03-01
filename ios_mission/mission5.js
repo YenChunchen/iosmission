@@ -14,8 +14,18 @@ router.post('/',upload.single('mission5Image')/*上傳單檔*/,function(req,res)
     key5:temp.key5,
     key6:temp.key6
   };
-  if((checkImage(req)===true)||checkField(key,req)===true){
-    fail={message:'請填入對應欄位或值'};
+  if((checkImage(req)===true)&&(checkKey(key,req)===true)){
+    fail={message:'請上傳對應欄位及值'};
+    res.status(400).json({fail:fail});
+    return;
+  }
+  if(checkImage(req)===true){
+    fail={message:'請上傳對應圖檔'};
+    res.status(400).json({fail:fail});
+    return;
+  }
+  if(checkKey(key,req)===true){
+    fail={message:'請填入對應欄位'};
     res.status(400).json({fail:fail});
     return;
   }
@@ -25,15 +35,19 @@ router.post('/',upload.single('mission5Image')/*上傳單檔*/,function(req,res)
 
 module.exports=router;
 
+
+
+
+
 /*檢查輸入欄位*/
-function checkField(key,req){
+function checkKey(key,req){
   var fail;
   for(var i in key){
     if((key[i]===undefined)||(key[i]==='')){
         fail=true;
       }
   }
-  if(fail===true){
+  if((fail===true)&&(req.file!==undefined)){
     fs.unlink('uploads/'+req.file.filename);
   }
   return fail;
