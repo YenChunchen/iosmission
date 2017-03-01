@@ -17,7 +17,7 @@ router.get('/m1',function(req,res){
   var fail;
   if ((name===undefined)||(name===''))
   {
-    fail={fail:'請輸入name'};
+    fail={messgae:'請輸入name'};
     res.status(400).json({fail:fail });
   }
   var message='welcome '+name;
@@ -25,7 +25,6 @@ router.get('/m1',function(req,res){
       welcome:message,
       time:time
   };
-  //res.json({welcome:message,time:time});
   res.json({success:success});
 });
 
@@ -33,15 +32,22 @@ router.get('/m1',function(req,res){
 router.get('/m2',function(req,res){
   var weatherInput=req.headers.weatherinput;
   var name=req.headers.name;
-  CheckField(name,weatherInput,res);
+  var fail;
+  if(checkField(name,weatherInput)!==undefined){
+    res.json({fail:checkField(name,weatherInput)});
+    return;
+  }
   var message='welcome '+name;
-  ChooseWeather(weatherInput,req,res);
+  if(chooseWeather(weatherInput,req)===false){
+    fail={messgae:'請輸入正確天氣'};
+    res.json({fail:fail});
+    return;
+  }
   var success={
       welcome:message,
       time:time,
       weatherImage:weather
   };
-  //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
 });
 
@@ -50,15 +56,22 @@ router.post('/m3',function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherInput=temp.weatherInput;
-  CheckField(name,weatherInput,res);
+  var fail;
+  if(checkField(name,weatherInput)!==undefined){
+    res.json({fail:checkField(name,weatherInput)});
+    return;
+  }
   var message='welcome '+name;
-  ChooseWeather(weatherInput,req,res);
+  if(chooseWeather(weatherInput,req)===false){
+    fail={messgae:'請輸入正確天氣'};
+    res.json({fail:fail});
+    return;
+  }
   var success={
       welcome:message,
       time:time,
       weatherImage:weather
   };
-  //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
 });
 
@@ -69,66 +82,70 @@ router.post('/m4',upload.single(),function(req,res){
   var temp=req.body;
   var name=temp.name;
   var weatherInput=temp.weatherInput;
-  CheckField(name,weatherInput,res);
+  var fail;
+  if(checkField(name,weatherInput)!==undefined){
+    res.json({fail:checkField(name,weatherInput)});
+    return;
+  }
   var message='welcome '+name;
-  ChooseWeather(weatherInput,req,res);
+  if(chooseWeather(weatherInput,req)===false){
+    fail={messgae:'請輸入正確天氣'};
+    res.json({fail:fail});
+    return;
+  }
   var success={
       welcome:message,
       time:time,
       weatherImage:weather
   };
-  //res.json({welcome:message,time:time,weather:weather});
   res.json({success:success});
 });
 module.exports=router;
 
 
 /*依使用者輸入天氣名稱選擇不同圖片回應*/
-function ChooseWeather(weatherInput,req,res){
-  switch (weatherInput){
-    case 'sunny':{
-      weather='https://'+req.hostname+'/uploads/sunny.jpg';
-      break;
-    }
-    case 'rainy':{
-      weather='https://'+req.hostname+'/uploads/rainy.jpg';
-      break;
-    }
-    case 'snow':{
-      weather='https://'+req.hostname+'/uploads/snow.jpg';
-      break;
-    }
-    case 'fog':{
-      weather='https://'+req.hostname+'/uploads/fog.jpg';
-      break;
-    }
-    default:{
-      res.json({fail:'請輸入正確天氣'});
-      break;
+function chooseWeather(weatherInput,req){
+  var count=0;  //計算是否選到對應天氣
+  var todayWeather=['sunny','rainy','snow','fog'];
+  for(var i =0;i<=todayWeather.length-1;i++){
+    if(todayWeather[i]===weatherInput){
+      weather='https://'+req.hostname+'/uploads/'+weatherInput+'.jpg';
+      count++;
+      return true;
     }
   }
+  if(count===0)
+    return false;
 }
 /*檢查m2,m3,m4使用者輸入欄位是否正確   */
-function CheckField(name,weatherInput,res){
-  var fail,checkBoth=0;
-  if ((name===undefined)||(name==='')){
-    checkBoth++;
+function checkField(name,weatherInput){
+  var fail;
+  var errorWeather=checkWeather(weatherInput);
+  var errorName=checkName(name);
+  if(errorWeather===true){
+    fail={messgae:'請輸入正確天氣'};
   }
+  if(errorName===true){
+    fail={messgae:'請輸入name'};
+  }
+  if((errorName===true)&&(errorWeather===true)){
+    fail={messgae:'請輸入正確天氣及name'};
+  }
+  return fail;
+}
+/*檢查天氣*/
+function checkWeather(weatherInput){
   if((weatherInput===undefined)||(weatherInput==='')){
-    checkBoth++;
+    // fail={messgae:'請輸入正確天氣'};
+    return true;
   }
-  if(checkBoth===2){
-    fail={fail:'請輸入正確天氣及name'};
-    res.status(400).json({fail:fail });
-  }
+  else return false;
+}
+/*檢查name*/
+function checkName(name){
   if ((name===undefined)||(name==='')){
-    checkBoth++;
-    fail={fail:'請輸入name'};
-    res.status(400).json({fail:fail });
+    // fail={messgae:'請輸入name'};
+    return true;
   }
-  if((weatherInput===undefined)||(weatherInput==='')){
-      checkBoth++;
-      fail={fail:'請輸入正確天氣'};
-      res.status(400).json({fail:fail });
-  }
+  else return false;
 }
