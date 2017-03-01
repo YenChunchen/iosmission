@@ -14,29 +14,46 @@ router.post('/',upload.single('mission5Image')/*上傳單檔*/,function(req,res)
     key5:temp.key5,
     key6:temp.key6
   };
+  // if((checkImage(req)===true)&&(checkKey(key,req)===true)){
+  //   fail={message:'請上傳對應欄位及檔案'};
+  //   res.status(400).json({fail:fail});
+  //   return;
+  // }
+  // if(checkImage(req)===true){
+  //   fail={message:'請上傳對應圖檔'};
+  //   res.status(400).json({fail:fail});
+  //   return;
+  // }
+  // if(checkKey(key,req)===true){
+  //   fail={message:'請填入對應欄位'};
+  //   res.status(400).json({fail:fail});
+  //   return;
+  // }
+  if(checkField(key,req,res)!==false){
+    success={message:'上傳成功'};
+    res.json({success:success});
+  }
+});
+
+module.exports=router;
+/*檢查所有欄位 回應*/
+function checkField(key,req,res){
   if((checkImage(req)===true)&&(checkKey(key,req)===true)){
-    fail={message:'請上傳對應欄位及值'};
+    fail={message:'請上傳對應欄位及檔案'};
     res.status(400).json({fail:fail});
-    return;
+    return false;
   }
   if(checkImage(req)===true){
     fail={message:'請上傳對應圖檔'};
     res.status(400).json({fail:fail});
-    return;
+    return false;
   }
   if(checkKey(key,req)===true){
     fail={message:'請填入對應欄位'};
     res.status(400).json({fail:fail});
-    return;
+    return false;
   }
-  success={message:'上傳成功'};
-  res.json({success:success});
-});
-
-module.exports=router;
-
-
-
+}
 
 
 /*檢查輸入欄位*/
